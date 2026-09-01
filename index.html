@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Everelia — Technology, managed end to end</title>
+<meta name="description" content="Everelia provides technology management, consulting, helpdesk, and hardware management for growing organizations." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f7f6f1;
+    --surface:#ffffff;
+    --ink:#14161a;
+    --ink-soft:#2b2e34;
+    --muted:#636872;
+    --line:#e6e2d7;
+    --line-strong:#d6d1c4;
+    --accent:#0e6152;      /* deep teal-green */
+    --accent-ink:#0a453b;
+    --accent-soft:#e6efe9;
+    --copper:#b0561f;       /* quiet secondary accent */
+    --copper-soft:#f6ece3;
+    --radius:14px;
+    --radius-sm:10px;
+    --maxw:1140px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,.display{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+  p{text-wrap:pretty;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--accent);color:#fff;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:"Manrope",sans-serif;
+    font-size:12.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--copper);
+    display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--copper);display:block;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:"Manrope",sans-serif;font-weight:600;font-size:15px;
+    padding:14px 24px;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;transition:transform .18s var(--ease), background .2s, box-shadow .2s, border-color .2s;
+    white-space:nowrap;
+  }
+  .btn svg{width:16px;height:16px;transition:transform .2s var(--ease);}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 1px 0 rgba(0,0,0,.04);}
+  .btn-primary:hover{background:var(--accent-ink);transform:translateY(-2px);box-shadow:0 10px 26px -12px rgba(14,97,82,.7);}
+  .btn-primary:hover svg{transform:translateX(3px);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .btn:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(160%) blur(10px);
+    background:rgba(247,246,241,.82);
+    border-bottom:1px solid transparent;transition:border-color .3s, background .3s;
+  }
+  header.nav.scrolled{border-bottom-color:var(--line);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .brand{font-family:"Fraunces",serif;font-size:23px;font-weight:500;letter-spacing:-.015em;display:flex;align-items:center;gap:2px;}
+  .brand .dot{color:var(--accent);}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--accent);transition:width .25s var(--ease);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:96px 0 84px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(40px,5.4vw,68px);font-weight:300;}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:400;}
+  .hero .lead{font-size:19px;color:var(--muted);max-width:44ch;margin:26px 0 34px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .trust{margin-top:38px;display:flex;align-items:center;gap:16px;color:var(--muted);font-size:13.5px;}
+  .trust .rule{width:1px;height:34px;background:var(--line-strong);}
+  .trust b{color:var(--ink);font-weight:600;font-family:"Fraunces",serif;}
+
+  /* Hero visual — minimal node motif (not a fake product shot) */
+  .hero-visual{position:relative;aspect-ratio:1/1;display:grid;place-items:center;}
+  .hero-visual svg{width:100%;height:auto;overflow:visible;}
+  .ring{fill:none;stroke:var(--line-strong);}
+  .ring.a{stroke:var(--accent);opacity:.35;}
+  .node{fill:var(--surface);stroke:var(--line-strong);}
+  .node.on{fill:var(--accent);stroke:var(--accent);}
+  .edge{stroke:var(--line-strong);stroke-width:1.4;}
+  .edge.on{stroke:var(--accent);opacity:.5;}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.12);opacity:.75}}
+  .node.on{transform-origin:center;animation:pulse 4s var(--ease) infinite;}
+  .n2{animation-delay:1.2s}.n3{animation-delay:2.4s}
+
+  /* ---------- Section base ---------- */
+  section{padding:76px 0;position:relative;scroll-margin-top:84px;}
+  .sec-head{max-width:640px;margin-bottom:48px;}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:300;}
+  .sec-head p{color:var(--muted);font-size:17px;margin:16px 0 0;}
+
+  /* ---------- Services (editorial list, not 4-equal-cards) ---------- */
+  .services{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .serv-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;}
+  .serv-aside{position:sticky;top:104px;}
+  .serv-aside .k{font-family:"Fraunces",serif;font-size:15px;color:var(--copper);font-weight:600;}
+  .serv-aside h2{font-size:clamp(28px,3.2vw,38px);font-weight:300;margin:14px 0 18px;}
+  .serv-aside p{color:var(--muted);font-size:16px;}
+  .serv-list{margin:0;}
+  .serv-row{display:grid;grid-template-columns:56px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line);}
+  .serv-row:first-child{border-top:none;padding-top:0;}
+  .serv-num{font-family:"Fraunces",serif;font-size:30px;font-weight:300;color:var(--accent);line-height:1;padding-top:2px;}
+  .serv-row h3{font-family:"Manrope",sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;margin:0 0 8px;color:var(--ink);}
+  .serv-row p{margin:0;color:var(--muted);font-size:15px;line-height:1.55;}
+  .serv-row .tags{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--accent-ink);background:var(--accent-soft);padding:4px 10px;border-radius:999px;}
+
+  /* ---------- Approach ---------- */
+  .approach{background:var(--bg);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
+  .step{padding:34px 30px 30px;border-right:1px solid var(--line);position:relative;}
+  .step:last-child{border-right:none;}
+  .step .idx{font-family:"Fraunces",serif;font-size:15px;color:var(--copper);font-weight:600;}
+  .step h3{font-family:"Manrope",sans-serif;font-weight:600;font-size:18px;margin:22px 0 10px;letter-spacing:-.01em;}
+  .step p{margin:0;color:var(--muted);font-size:15px;}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{background:var(--accent-ink);color:#fff;padding:88px 0;position:relative;overflow:hidden;}
+  .cta-band::before{content:"";position:absolute;inset:0;background:
+     radial-gradient(600px 300px at 85% -10%, rgba(176,86,31,.28), transparent 70%),
+     radial-gradient(500px 260px at 10% 120%, rgba(255,255,255,.08), transparent 70%);pointer-events:none;}
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1;}
+  .cta-band h2{color:#fff;font-size:clamp(30px,3.6vw,44px);font-weight:300;}
+  .cta-band p{color:rgba(255,255,255,.82);font-size:17px;margin:18px 0 0;max-width:42ch;}
+  .cta-band .eyebrow{color:var(--copper);}
+  .cta-band .eyebrow::before{background:var(--copper);}
+  form.request{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:30px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.85);margin-bottom:7px;}
+  .field input,.field textarea{
+    width:100%;font-family:"Manrope",sans-serif;font-size:15px;color:#fff;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.18);
+    border-radius:var(--radius-sm);padding:12px 14px;transition:border-color .2s, background .2s;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.45);}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--copper);background:rgba(255,255,255,.09);}
+  .field textarea{resize:vertical;min-height:78px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  form.request .btn-primary{background:#fff;color:var(--accent-ink);width:100%;justify-content:center;margin-top:6px;padding:15px;}
+  form.request .btn-primary:hover{background:var(--copper-soft);transform:translateY(-2px);}
+  .form-note{font-size:12px;color:rgba(255,255,255,.55);margin:14px 0 0;text-align:center;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 40px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  .foot-brand .brand{font-size:26px;}
+  .foot-brand p{color:var(--muted);font-size:14.5px;max-width:34ch;margin:16px 0 0;}
+  .foot-col h4{font-family:"Manrope",sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 16px;}
+  .foot-col a{display:block;color:var(--muted);font-size:14.5px;padding:5px 0;transition:color .15s;}
+  .foot-col a:hover{color:var(--accent);}
+  .foot-base{display:flex;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- Reveal (CSS-only, no JS dependency) ---------- */
+  @keyframes fade-up {from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .reveal{animation:fade-up .65s var(--ease) both;animation-delay:var(--d,0s);}
+  /* stagger: nth-of-type delays on common containers */
+  .hero-copy .reveal:nth-child(1){--d:.05s}
+  .hero-copy .reveal:nth-child(2){--d:.12s}
+  .hero-copy .reveal:nth-child(3){--d:.19s}
+  .hero-copy .reveal:nth-child(4){--d:.26s}
+  .hero-copy .reveal:nth-child(5){--d:.33s}
+  .serv-row.reveal:nth-child(1){--d:.10s}
+  .serv-row.reveal:nth-child(2){--d:.20s}
+  .serv-row.reveal:nth-child(3){--d:.30s}
+  .serv-row.reveal:nth-child(4){--d:.40s}
+  .step.reveal:nth-child(1){--d:.10s}
+  .step.reveal:nth-child(2){--d:.20s}
+  .step.reveal:nth-child(3){--d:.30s}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    .hero-visual{max-width:360px;margin:0 auto;}
+    .serv-grid{grid-template-columns:1fr;gap:32px;}
+    .serv-aside{position:static;}
+    .cta-grid{grid-template-columns:1fr;gap:34px;}
+    .steps{grid-template-columns:1fr;}
+    .step{border-right:none;border-top:1px solid var(--line);}
+    .foot-grid{grid-template-columns:1fr;gap:28px;}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px;}
+    .hero{padding:64px 0 56px;}
+    .row2{grid-template-columns:1fr;}
+    .foot-base{flex-direction:column;align-items:flex-start;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    .reveal{opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home">Everelia<span class="dot">.</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#services">Our work</a>
+      <a class="btn btn-primary" href="#contact">
+        Request information
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Technology, managed end to end</span>
+      <h1 class="reveal">The steady hand behind your <em>technology</em>.</h1>
+      <p class="lead reveal">Everelia partners with growing organizations to run, improve, and protect their technology — from day-to-day helpdesk and hardware through to strategy and transformation.</p>
+      <div class="hero-cta reveal">
+        <a class="btn btn-primary" href="#contact">
+          Request more information
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#services">See what we do</a>
+      </div>
+      <div class="trust reveal">
+        <span><b>4</b> core services</span>
+        <span class="rule"></span>
+        <span><b>One</b> accountable partner</span>
+        <span class="rule"></span>
+        <span><b>24/7</b> support ready</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal" aria-hidden="true">
+      <svg viewBox="0 0 360 360" role="img">
+        <circle class="ring" cx="180" cy="180" r="164" stroke-dasharray="3 9"/>
+        <circle class="ring" cx="180" cy="180" r="118"/>
+        <circle class="ring a" cx="180" cy="180" r="74"/>
+        <!-- edges -->
+        <line class="edge on" x1="180" y1="180" x2="180" y2="38"/>
+        <line class="edge on" x1="180" y1="180" x2="322" y2="180"/>
+        <line class="edge" x1="180" y1="180" x2="180" y2="322"/>
+        <line class="edge" x1="180" y1="180" x2="38" y2="180"/>
+        <!-- nodes -->
+        <circle class="node on n1" cx="180" cy="180" r="17"/>
+        <circle class="node on n2" cx="180" cy="38" r="11"/>
+        <circle class="node on n3" cx="322" cy="180" r="11"/>
+        <circle class="node" cx="180" cy="322" r="11"/>
+        <circle class="node" cx="38" cy="180" r="11"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap serv-grid">
+    <div class="serv-aside reveal">
+      <span class="k">What we do</span>
+      <h2>Four ways we keep technology working for you.</h2>
+      <p>Whether you need us to run the day-to-day, advise on a decision, or lead a change, one accountable team covers the whole picture — no juggling three vendors.</p>
+      <a class="btn btn-ghost" href="#contact" style="margin-top:26px;">Talk with us</a>
+    </div>
+    <div class="serv-list">
+      <article class="serv-row reveal">
+        <div class="serv-num">01</div>
+        <div>
+          <h3>Technology Management</h3>
+          <p>Ongoing oversight of your systems, people, and vendors so nothing slips through. We keep the lights on and the road ahead clear.</p>
+          <div class="tags"><span class="tag">Operations</span><span class="tag">Governance</span><span class="tag">Vendor management</span></div>
+        </div>
+      </article>
+      <article class="serv-row reveal">
+        <div class="serv-num">02</div>
+        <div>
+          <h3>Technology Consulting</h3>
+          <p>Independent, senior advice on what to buy, build, or change. We help you decide with confidence — and make the case to the people who fund it.</p>
+          <div class="tags"><span class="tag">Strategy</span><span class="tag">Architecture</span><span class="tag">Roadmaps</span></div>
+        </div>
+      </article>
+      <article class="serv-row reveal">
+        <div class="serv-num">03</div>
+        <div>
+          <h3>Helpdesk &amp; Support</h3>
+          <p>A responsive helpdesk for your people — fast triage, clear communication, and issues resolved the first time, not escalated into churn.</p>
+          <div class="tags"><span class="tag">Tier 1–3</span><span class="tag">SLAs</span><span class="tag">User support</span></div>
+        </div>
+      </article>
+      <article class="serv-row reveal">
+        <div class="serv-num">04</div>
+        <div>
+          <h3>Hardware Management</h3>
+          <p>Full lifecycle care for your devices — procurement, imaging, tracking, maintenance, and secure retirement when it's time for replacement.</p>
+          <div class="tags"><span class="tag">Procurement</span><span class="tag">Asset tracking</span><span class="tag">Lifecycle</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How we work</span>
+      <h2>A partnership, not a transaction.</h2>
+      <p>We meet you where your technology is and move at your pace — with the same team from the first conversation through to delivery.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="idx">01 — Understand</span>
+        <h3>Listen first</h3>
+        <p>We start by understanding your people, your goals, and your constraints — not by pushing a template.</p>
+      </div>
+      <div class="step reveal">
+        <span class="idx">02 — Plan</span>
+        <h3>One clear path</h3>
+        <p>A pragmatic plan with clear priorities and honest trade-offs — written so a non-specialist can follow it.</p>
+      </div>
+      <div class="step reveal">
+        <span class="idx">03 — Deliver &amp; support</span>
+        <h3>Own the outcome</h3>
+        <p>We implement, then stay on to support it — one accountable partner for the whole journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band" id="contact">
+  <div class="wrap cta-grid">
+    <div class="cta-copy reveal">
+      <span class="eyebrow">Let's talk</span>
+      <h2>Request more information about working with Everelia.</h2>
+      <p>Tell us a little about what you need. We'll respond personally with the right next step — no sales scripts, no gatekeeping.</p>
+    </div>
+    <form class="request reveal" id="request-form" novalidate>
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" placeholder="Jane Doe" required />
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" placeholder="jane@company.com" required />
+        </div>
+        <div class="field">
+          <label for="f-org">Organization</label>
+          <input id="f-org" name="org" type="text" placeholder="Company name" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-msg">What can we help with?</label>
+        <textarea id="f-msg" name="message" placeholder="A sentence or two about your needs…"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">
+        Send request
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+      </button>
+      <p class="form-note" id="form-note">We reply within one business day.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#home">Everelia<span class="dot">.</span></a>
+        <p>The steady hand behind your technology — management, consulting, helpdesk, and hardware, under one accountable roof.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#services">Technology Management</a>
+        <a href="#services">Technology Consulting</a>
+        <a href="#services">Helpdesk &amp; Support</a>
+        <a href="#services">Hardware Management</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="#contact">Request information</a>
+        <a href="mailto:hello@everelia.com">hello@everelia.com</a>
+        <a href="tel:+10000000000">+1 (000) 000-0000</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Everelia. All rights reserved.</span>
+      <span>Technology that works — for the people who rely on it.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav border on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // CSS-only reveal (no JS needed). Reduced-motion handled by the @media block below.
+
+  // Contact form -> mailto (placeholder; wire to a real endpoint for production)
+  const form = document.getElementById('request-form');
+  const note = document.getElementById('form-note');
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    if (!name || !email) {
+      note.textContent = 'Please add your name and a valid email so we can reply.';
+      note.style.color = '#f6c9a8';
+      return;
+    }
+    const org = form.org.value.trim();
+    const msg = form.message.value.trim();
+    const subject = 'Website enquiry' + (org ? ' — ' + org : '');
+    const body =
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      (org ? 'Organization: ' + org + '\n' : '') +
+      (msg ? '\nMessage:\n' + msg : '');
+    window.location.href = 'mailto:hello@everelia.com?subject=' +
+      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    note.textContent = 'Opening your email to send… thanks, ' + name.split(' ')[0] + '!';
+    note.style.color = '#bfe8dd';
+  });
+</script>
+</body>
+</html>
