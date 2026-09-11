@@ -207,58 +207,63 @@
   .step.reveal:nth-child(3){--d:.30s}
 
   /* ---------- Responsive ---------- */
-   @media(max-width:900px){
-     .nav-links{display:none;}
-     .hero-grid{grid-template-columns:1fr;gap:40px;}
-     .hero-visual{max-width:320px;margin:0 auto;}
-     .hero-visual svg{width:100%;}
-     .serv-grid{grid-template-columns:1fr;gap:32px;}
-     .serv-aside{position:static;}
-     .cta-grid{grid-template-columns:1fr;gap:34px;}
-     .steps{grid-template-columns:1fr;}
-     .step{border-right:none;border-top:1px solid var(--line);}
-     .foot-grid{grid-template-columns:1fr;gap:28px;}
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    .hero-visual{max-width:320px;margin:0 auto;}
+    .hero-visual svg{width:100%;}
+    .serv-grid{grid-template-columns:1fr;gap:32px;}
+    .serv-aside{position:static;}
+    .cta-grid{grid-template-columns:1fr;gap:34px;}
+    .steps{grid-template-columns:1fr;}
+    .step{border-right:none;border-top:1px solid var(--line);}
+    .foot-grid{grid-template-columns:1fr;gap:28px;}
+  }
+  @media(max-width:560px){
+    /* Nav: keep brand + CTA, just shrink everything to fit */
+    .wrap{padding:0 14px;}
+   header.nav{
+      padding-top:max(env(safe-area-inset-top,0px),0px);
+      -webkit-backdrop-filter:saturate(160%) blur(10px);
+      backdrop-filter:saturate(160%) blur(10px);
+    }
+   .nav-inner{height:52px;min-height:0;flex-wrap:nowrap;overflow:visible;}
+   .brand{font-size:17px;font-weight:500;line-height:1;}
+   .nav-cta a.btn-ghost{display:none !important;}
+    .nav-cta a.btn-primary{
+     padding:8px 16px;font-size:13px;white-space:normal;line-height:1.2;text-align:center;
+     max-width:140px;word-break:break-word;
    }
-   @media(max-width:560px){
-     /* Global constraints - ensure nothing overflows */
-     html,body,.wrap,main{width:100%;overflow-x:hidden;max-width:100vw !important;}
-     .wrap{padding:0 12px;}
+    .nav-cta svg{width:12px;height:12px;}
 
-     /* Nav bar: shrink brand, stack buttons vertically behind it to avoid right-edge overflow */
-     header.nav{padding-top:max(env(safe-area-inset-top, 4px),4px);}
-     .nav-inner{height:50px;justify-content:flex-start;}
-     .brand{font-size:17px;}
-     .nav-cta{gap:4px;flex-direction:column;align-items:flex-end;}
-     .nav-cta a{padding:6px 8px;font-size:10px;font-weight:700;max-width:120px;justify-content:center;white-space:normal;text-align:right;line-height:1.2;height:auto;}
-     .nav-cta svg{width:10px;height:10px;}
+    /* Hero: compact but brand-visible, CTAs stack full-width */
+    .hero{padding:56px 0 40px;}
+    .wrap{padding:0 14px !important;}
+   .hero h1{font-size:clamp(28px,7.5vw,40px);}
+   .hero .lead{font-size:15px;margin:14px 0 22px;line-height:1.5;}
+    .hero-cta{flex-direction:column;gap:10px;width:100%;}
+    .hero-cta a{width:100%;justify-content:center;padding:12px 18px;font-size:14px;}
+   .trust{flex-direction:column;align-items:flex-start;gap:8px;margin-top:20px;}
+   .trust .rule{display:none;}
+    .hero-visual{max-width:240px;}
 
-     /* Hero section */
-     .hero{padding:40px 0 28px;}
-     .hero h1{font-size:clamp(26px,7vw,36px);line-height:1.1;}
-     .hero .lead{font-size:14px;margin:12px 0 18px;line-height:1.5;}
-     .hero-cta{flex-direction:column;gap:8px;align-items:stretch;width:100%;}
-     .hero-cta a{width:100%;justify-content:center;padding:11px 16px;font-size:13px;}
-     .trust{flex-direction:column;align-items:flex-start;gap:8px;margin-top:18px;}
-     .trust .rule{display:none;}
-     .trust b{font-size:15px;}
+    /* Sections tighter spacing */
+  section{padding:48px 0;scroll-margin-top:64px;}
+    .sec-head h2{font-size:clamp(22px,5.5vw,34px);}
+   .serv-aside h2{font-size:clamp(22px,5.5vw,34px);}
 
-     /* Hero visual constrained */
-     .hero-visual svg{width:60%;max-width:200px;}
+    /* Form */
+    .row2{grid-template-columns:1fr;}
+   form.request{padding:20px;font-size:14px;}
 
-     /* Sections tighter spacing */
-     section{padding:40px 0;scroll-margin-top:64px;}
-     .sec-head h2{font-size:clamp(22px,5vw,30px);}
-     .serv-aside h2{font-size:clamp(22px,5vw,30px);}
+    /* Footer */
+    .foot-grid{gap:20px;margin-bottom:24px;}
+    .foot-brand p{font-size:13px;max-width:none;}
+    .foot-base{flex-direction:column;align-items:flex-start;gap:6px;position:static !important;}
 
-     /* Form */
-     .row2{grid-template-columns:1fr;}
-     form.request{padding:20px;font-size:13px;}
-
-     /* Footer */
-     .foot-grid{gap:20px;margin-bottom:24px;}
-     .foot-brand p{font-size:13px;max-width:none;}
-     .foot-base{flex-direction:column;align-items:flex-start;gap:6px;}
-   }
+  /* Ensure viewport containment for ALL elements */
+  html,body{width:100%;overflow-x:hidden !important;}
+  }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;}
     .reveal{opacity:1;transform:none;}
