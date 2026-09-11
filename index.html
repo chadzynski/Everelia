@@ -220,21 +220,16 @@
     .foot-grid{grid-template-columns:1fr;gap:28px;}
   }
   @media(max-width:560px){
-    /* Nav: keep brand + CTA, just shrink everything to fit */
-    .wrap{padding:0 14px;}
+    /* Nav: brand only on mobile — no CTA buttons */
+     .wrap{padding:0 14px;}
    header.nav{
       padding-top:max(env(safe-area-inset-top,0px),0px);
-      -webkit-backdrop-filter:saturate(160%) blur(10px);
+       -webkit-backdrop-filter:saturate(160%) blur(10px);
       backdrop-filter:saturate(160%) blur(10px);
-    }
-   .nav-inner{height:52px;min-height:0;flex-wrap:nowrap;overflow:visible;}
-   .brand{font-size:17px;font-weight:500;line-height:1;}
-   .nav-cta a.btn-ghost{display:none !important;}
-    .nav-cta a.btn-primary{
-     padding:8px 16px;font-size:13px;white-space:normal;line-height:1.2;text-align:center;
-     max-width:140px;word-break:break-word;
-   }
-    .nav-cta svg{width:12px;height:12px;}
+     }
+    .nav-inner{height:52px;min-height:0;flex-wrap:nowrap;overflow:visible;}
+    .brand{font-size:17px;font-weight:500;line-height:1;}
+    .nav-cta{display:none !important;}
 
     /* Hero: compact but brand-visible, CTAs stack full-width */
     .hero{padding:56px 0 40px;}
