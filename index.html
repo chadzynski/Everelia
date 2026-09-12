@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Everelia — Technology, managed end to end</title>
-<meta name="description" content="Everelia provides technology management, consulting, helpdesk, and hardware management for growing organizations." />
+<title>Everelia — Beta</title>
+<meta name="robots" content="noindex, nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
     --bg:#f7f6f1;
@@ -34,7 +34,7 @@
      margin:0;
      background:var(--bg);
      color:var(--ink);
-     font-family:"Lora", Georgia, serif;
+     font-family:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
      font-size:17px;
      line-height:1.6;
        -webkit-font-smoothing:antialiased;
@@ -43,7 +43,7 @@
      width:100vw;
     }
   h1,h2,h3,.display{
-    font-family:"Fraunces", Georgia, serif;
+    font-family:"Manrope",sans-serif;
     font-weight:400;
     letter-spacing:-0.01em;
     line-height:1.05;
@@ -57,17 +57,17 @@
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
   .eyebrow{
-    font-family:"Lora",Georgia,serif;
+    font-family:"Manrope",sans-serif;
     font-size:12.5px;font-weight:600;letter-spacing:.16em;
     text-transform:uppercase;color:var(--copper);
-    display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;
+    display:inline-flex;align-items:center;gap:10px;margin:0 0 8px;
   }
   .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--copper);display:block;}
 
   /* ---------- Buttons ---------- */
   .btn{
     display:inline-flex;align-items:center;gap:9px;
-    font-family:"Lora",Georgia,serif;font-weight:600;font-size:15px;
+    font-family:"Manrope",sans-serif;font-weight:600;font-size:15px;
     padding:14px 24px;border-radius:999px;border:1px solid transparent;
     cursor:pointer;transition:transform .18s var(--ease), background .2s, box-shadow .2s, border-color .2s;
     white-space:nowrap;
@@ -89,7 +89,7 @@
   }
   header.nav.scrolled{border-bottom-color:var(--line);}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;min-width:0;flex-wrap:nowrap;}
-  .brand{font-family:"Fraunces",serif;font-size:23px;font-weight:500;letter-spacing:-.015em;display:flex;align-items:center;gap:2px;white-space:nowrap;}
+  .brand{font-family:"Fraunces",serif;font-size:35px;font-weight:500;letter-spacing:-.015em;display:flex;align-items:center;gap:2px;white-space:nowrap;}
   .brand .dot{color:var(--accent);}
   .nav-links{display:flex;gap:34px;align-items:center;}
   .nav-links a{font-size:15px;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0;}
@@ -99,7 +99,7 @@
   .nav-cta{display:flex;align-items:center;gap:14px;flex-shrink:0;}
 
   /* ---------- Hero ---------- */
-  .hero{position:relative;padding:96px 0 84px;overflow:hidden;}
+  .hero{position:relative;padding:72px 0 64px;overflow:hidden;}
   .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;}
   .hero h1{font-size:clamp(40px,5.4vw,68px);font-weight:300;}
   .hero h1 em{font-style:italic;color:var(--accent);font-weight:400;}
@@ -107,7 +107,7 @@
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
   .trust{margin-top:38px;display:flex;align-items:center;gap:16px;color:var(--muted);font-size:13.5px;}
   .trust .rule{width:1px;height:34px;background:var(--line-strong);}
-  .trust b{color:var(--ink);font-weight:600;font-family:"Fraunces",serif;}
+  .trust b{color:var(--ink);font-weight:600;font-family:"Manrope",sans-serif;}
 
   /* Hero visual — minimal node motif (not a fake product shot) */
   .hero-visual{position:relative;max-width:100%;display:grid;place-items:center;}
@@ -132,14 +132,14 @@
   .services{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
   .serv-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;}
   .serv-aside{position:sticky;top:104px;}
-  .serv-aside .k{font-family:"Fraunces",serif;font-size:15px;color:var(--copper);font-weight:600;}
+  .serv-aside .k{font-family:"Manrope",sans-serif;font-size:15px;color:var(--copper);font-weight:600;}
   .serv-aside h2{font-size:clamp(28px,3.2vw,38px);font-weight:300;margin:14px 0 18px;}
   .serv-aside p{color:var(--muted);font-size:16px;}
   .serv-list{margin:0;}
   .serv-row{display:grid;grid-template-columns:56px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line);}
   .serv-row:first-child{border-top:none;padding-top:0;}
-  .serv-num{font-family:"Fraunces",serif;font-size:30px;font-weight:300;color:var(--accent);line-height:1;padding-top:2px;}
-  .serv-row h3{font-family:"Lora",Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-.01em;margin:0 0 8px;color:var(--ink);}
+  .serv-num{font-family:"Manrope",sans-serif;font-size:30px;font-weight:300;color:var(--accent);line-height:1;padding-top:2px;}
+  .serv-row h3{font-family:"Manrope",sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;margin:0 0 8px;color:var(--ink);}
   .serv-row p{margin:0;color:var(--muted);font-size:15px;line-height:1.55;}
   .serv-row .tags{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;}
   .tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--accent-ink);background:var(--accent-soft);padding:4px 10px;border-radius:999px;}
@@ -149,8 +149,8 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
   .step{padding:34px 30px 30px;border-right:1px solid var(--line);position:relative;}
   .step:last-child{border-right:none;}
-  .step .idx{font-family:"Fraunces",serif;font-size:15px;color:var(--copper);font-weight:600;}
-  .step h3{font-family:"Lora",Georgia,serif;font-weight:600;font-size:18px;margin:22px 0 10px;letter-spacing:-.01em;}
+  .step .idx{font-family:"Manrope",sans-serif;font-size:15px;color:var(--copper);font-weight:600;}
+  .step h3{font-family:"Manrope",sans-serif;font-weight:600;font-size:18px;margin:22px 0 10px;letter-spacing:-.01em;}
   .step p{margin:0;color:var(--muted);font-size:15px;}
 
   /* ---------- CTA band ---------- */
@@ -167,7 +167,7 @@
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:13px;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.85);margin-bottom:7px;}
   .field input,.field textarea{
-    width:100%;font-family:"Lora",Georgia,serif;font-size:15px;color:#fff;
+    width:100%;font-family:"Manrope",sans-serif;font-size:15px;color:#fff;
     background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.18);
     border-radius:var(--radius-sm);padding:12px 14px;transition:border-color .2s, background .2s;
   }
@@ -184,7 +184,7 @@
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
   .foot-brand .brand{font-size:26px;}
   .foot-brand p{color:var(--muted);font-size:14.5px;max-width:34ch;margin:16px 0 0;}
-  .foot-col h4{font-family:"Lora",Georgia,serif;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 16px;}
+  .foot-col h4{font-family:"Manrope",sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 16px;}
   .foot-col a{display:block;color:var(--muted);font-size:14.5px;padding:5px 0;transition:color .15s;}
   .foot-col a:hover{color:var(--accent);}
   .foot-base{display:flex;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;flex-wrap:wrap;gap:10px;}
@@ -227,12 +227,12 @@
        -webkit-backdrop-filter:saturate(160%) blur(10px);
       backdrop-filter:saturate(160%) blur(10px);
      }
-    .nav-inner{height:52px;min-height:0;flex-wrap:nowrap;overflow:visible;}
-    .brand{font-size:28px;font-weight:500;line-height:1;}
+    .nav-inner{height:64px;min-height:0;flex-wrap:nowrap;overflow:visible;}
+    .brand{font-size:40px;font-weight:500;line-height:1;}
     .nav-cta{display:none !important;}
 
     /* Hero: compact but brand-visible, CTAs stack full-width */
-     .hero{padding:56px 0 40px;}
+     .hero{padding:16px 0 32px;}
      .wrap{padding:0 14px !important;}
     .hero h1{font-size:clamp(28px,7.5vw,40px);}
     .hero .lead{font-size:15px;margin:14px 0 22px;line-height:1.5;}
@@ -459,8 +459,7 @@
         <h4>Get in touch</h4>
         <a href="#contact">Request information</a>
         <a href="mailto:hello@everelia.com">hello@everelia.com</a>
-        <a href="tel:+10000000000">+1 (000) 000-0000</a>
-      </div>
+        </div>
     </div>
     <div class="foot-base">
       <span>© 2026 Everelia. All rights reserved.</span>
